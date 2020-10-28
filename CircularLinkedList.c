@@ -10,8 +10,8 @@ struct node                             //structure of the node
 struct node *head=NULL;
 
 void insert_end();                      //prototype
-void insert_beg(int data);
-void insert_pos(int data, int pos);
+void insert_beg();
+void insert_pos();
 void end_del();
 void beg_del();
 void pos_del(int pos);
@@ -42,17 +42,12 @@ int main()                              //menu driven main function
             break;
             
             case 2:
-                printf("\nEnter data to be entered :");
-                scanf("%d",&data);
-                insert_beg(data);
+                insert_beg();
             break;
 
             case 3:
-                printf("\nEnter data to be entered :");
-                scanf("%d",&data);
-                printf("\nEnter position of data(to be entered) : ");
-                scanf("%d",&pos);
-                insert_pos(data,pos);
+                
+                insert_pos();
             break;
             
             case 4:
@@ -121,11 +116,15 @@ void insert_end()                                           //function to enter 
     }
 }
 
-void insert_beg(int data)                                           //function to enter value at end of the linked list 
+void insert_beg()                                           //function to enter value at end of the linked list 
 {   
         struct node *new, *temp;                            //initialization of pointers
         new=(struct node*)malloc(sizeof(struct node));          //memory allocation
 
+        int data,pos;
+     printf("\nEnter data to be entered :");
+                scanf("%d",&data);
+    
     if(new==NULL)
     {
         printf("\nUNABLE TO ALLOCATE MEMORY\n");
@@ -155,10 +154,12 @@ void insert_beg(int data)                                           //function t
     }
 }
 
-void insert_pos(int data,int pos)
+void insert_pos()
 {
     struct node *new , *temp;       //initilaizaiton
-    int i;
+    int i,pos,data;
+                printf("\nEnter position of data(to be entered) : ");
+                scanf("%d",&pos);
     
     if(head==NULL)              //empty list
     {
@@ -166,10 +167,12 @@ void insert_pos(int data,int pos)
     }
     else if(pos==1)         //only one element on the list
     {
-        insert_beg(data);       //funciton call
+        insert_beg();       //funciton call
     }
     else
     {
+        printf("\nEnter data to be entered :");
+                scanf("%d",&data);
         new=(struct node*)malloc(sizeof(struct node));  //memory allocation
         new->data=data;     
         
